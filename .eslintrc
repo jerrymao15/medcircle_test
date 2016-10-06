@@ -1,0 +1,7 @@
+{
+    "extends": "airbnb",
+    "installedESLint": true,
+    "rules": {
+      "no-use-before-define": 0
+    }
+}
