@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "BABEL_DISABLE_CACHE=1 export NODE_ENV=test && mocha test/articleRoute-Test.js"
   },
   "author": "Jerry Mao",
   "license": "ISC",

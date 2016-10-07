@@ -16,3 +16,5 @@ app.use('/v1', articleRoutes);
 app.get('/initialize', createController.createDB, (req, res) => res.end());
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}.`));
+
+module.exports = app;
