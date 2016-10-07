@@ -19,7 +19,7 @@ const articleController = {
   },
 
   editArticle(req, res) {
-    const id = req.params.id;
+    const { id } = req.params;
     const articleFields = ['title', 'summary', 'media_url', 'published_at', 'likes_count'];
     const updatedFields = {};
 
@@ -37,7 +37,7 @@ const articleController = {
   },
 
   deleteArticle(req, res) {
-    const id = req.params.id;
+    const { id } = req.params;
     return sequelize.sync()
     .then(() => Article.destroy({ where: { id } }))
     .then(num => num === 1 ? res.status(200).end() : res.status(400).end())
