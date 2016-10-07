@@ -6,10 +6,8 @@ const articleController = {
     const id = req.params.id ? req.params.id : false;
 
     return sequelize.sync()
-    .then(() => {
-      if (id === false) return Article.findAll({ raw: true });
-      return Article.findOne({ where: { id }, raw: true });
-    })
+    .then(() => id === false ? Article.findAll({ raw: true })
+      : Article.findOne({ where: { id }, raw: true }))
     .then(articles => {
       if (articles === null) return res.status(400).end('No articles found.');
       const result = Array.isArray(articles) ? articles : [articles];
