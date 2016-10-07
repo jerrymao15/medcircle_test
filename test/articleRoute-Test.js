@@ -11,7 +11,7 @@ describe('Article GET requests', function() {
   });
   
   it('should get all articles if no ID is specified', function(done) {
-    request.get('/v1/articles')
+    request.get('/api/v1/articles')
     .expect('Content-Type', /json/)
     .expect(200)
     .expect(res => {
@@ -25,7 +25,7 @@ describe('Article GET requests', function() {
   });
 
   it ('should get back an article based on ID parameter', function(done) {
-    request.get('/v1/articles/1')
+    request.get('/api/v1/articles/1')
     .expect('Content-Type', /json/)
     .expect(200)
     .expect(res => {
@@ -37,7 +37,7 @@ describe('Article GET requests', function() {
   })
 
   it ('should handle an ID not in the database', function(done) {
-    request.get('/v1/articles/100')
+    request.get('/api/v1/articles/100')
     .expect(400)
     .end(done);
   })
@@ -67,7 +67,7 @@ describe('Article PUT requests', function() {
       summary: 'Cats are good for your health.',
     };
 
-    request.put('/v1/articles/15')
+    request.put('/api/v1/articles/15')
     .send(edit)
     .expect(200)
     .expect(res => {
@@ -86,7 +86,7 @@ describe('Article PUT requests', function() {
       summary: 'Cats are good for your health.',
     };
 
-    request.put('/v1/articles/15')
+    request.put('/api/v1/articles/15')
     .send(edit)
     .expect(200)
     .expect(res => {
@@ -105,7 +105,7 @@ describe('Article PUT requests', function() {
       uhoh: 'This should not be here.',
     };
 
-    request.put('/v1/articles/15')
+    request.put('/api/v1/articles/15')
     .send(edit)
     .expect(200)
     .expect(res => {
@@ -120,7 +120,7 @@ describe('Article PUT requests', function() {
     const edit = {
       summary: 'What am I updating...?',
     };
-    request.put('/v1/articles/105')
+    request.put('/api/v1/articles/105')
     .send(edit)
     .expect(400)
     .end(done);
@@ -145,13 +145,13 @@ describe('Article DELETE requests', function() {
   });
 
   it('should delete the proper article', function(done) {
-    request.delete('/v1/articles/15')
+    request.delete('/api/v1/articles/15')
     .expect(200)
     .end(done);
   });
 
   it ('should handle a wrong ID', function(done) {
-    request.delete('/v1/articles/105')
+    request.delete('/api/v1/articles/105')
     .expect(400)
     .end(done);
   });
