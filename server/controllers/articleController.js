@@ -31,7 +31,7 @@ const articleController = {
 
     return sequelize.sync()
     .then(() => Article.update(updatedFields, { where: { id }, returning: true }))
-    .then(rows => rows[1].length === 0 ? res.status(400).end() : res.type('application/json')
+    .then(rows => rows[0] === 0 ? res.status(400).end() : res.type('application/json')
       .end(JSON.stringify([articleController.formatData(rows[1][0])])))
     .catch(err => res.status(400).end(err));
   },
