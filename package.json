@@ -16,7 +16,6 @@
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "pg": "^6.1.0",
-    "qs": "^6.2.1",
     "sequelize": "^3.24.3"
   },
   "devDependencies": {
