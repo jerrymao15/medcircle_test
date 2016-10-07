@@ -9,7 +9,7 @@ const PORT = 3000;
 
 // middleware used for all routes
 app.use(bodyParser.json());
-// app.use(validateToken);
+app.use(validateToken);
 
 /**
  * Express router is being used to handle potentially different versions of the API.

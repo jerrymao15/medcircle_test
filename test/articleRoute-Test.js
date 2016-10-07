@@ -4,6 +4,30 @@ const request = require('supertest')(server);
 const qs = require('qs');
 const { sequelize, Article } = require('../server/controllers/dbController');
 const articleFixture = require('./fixtures/articleFixture');
+if (process.env.SECRET_TOKEN === undefined) require('dotenv').config();
+const validation = `bearer ${process.env.SECRET_TOKEN}`;
+
+describe('OAuth bearer token', function() {
+  it('should give a 401 with no token', function(done) {
+    request.get('/api/v1')
+    .expect(401)
+    .end(done);
+  });
+
+  it ('should give a 401 with incorrect token', function(done) {
+    request.get('/api/v1')
+    .set('Authorization', 'abc123')
+    .expect(401)
+    .end(done);
+  });
+
+  it('should grant access with correct token', function(done) {
+    request.get('/api/v1')
+    .set('Authorization', validation)
+    .expect(200)
+    .end(done);
+  })
+})
 
 describe('Article GET requests', function() {
   before((done) => {
@@ -12,6 +36,7 @@ describe('Article GET requests', function() {
   
   it('should get all articles if no ID is specified', function(done) {
     request.get('/api/v1/articles')
+    .set('Authorization', validation)
     .expect('Content-Type', /json/)
     .expect(200)
     .expect(res => {
@@ -21,11 +46,12 @@ describe('Article GET requests', function() {
         throw new Error(e)
       }
     })
-    .end(done)
+    .end(done);
   });
 
   it ('should get back an article based on ID parameter', function(done) {
     request.get('/api/v1/articles/1')
+    .set('Authorization', validation)
     .expect('Content-Type', /json/)
     .expect(200)
     .expect(res => {
@@ -33,11 +59,12 @@ describe('Article GET requests', function() {
       expect(result.length).to.eql(1);
       expect(result[0].author.name).to.eql('Amy Kovacek');
     })
-    .end(done)
+    .end(done);
   })
 
   it ('should handle an ID not in the database', function(done) {
     request.get('/api/v1/articles/100')
+    .set('Authorization', validation)
     .expect(400)
     .end(done);
   })
@@ -68,6 +95,7 @@ describe('Article PUT requests', function() {
     };
 
     request.put('/api/v1/articles/15')
+    .set('Authorization', validation)
     .send(edit)
     .expect(200)
     .expect(res => {
@@ -87,6 +115,7 @@ describe('Article PUT requests', function() {
     };
 
     request.put('/api/v1/articles/15')
+    .set('Authorization', validation)
     .send(edit)
     .expect(200)
     .expect(res => {
@@ -106,6 +135,7 @@ describe('Article PUT requests', function() {
     };
 
     request.put('/api/v1/articles/15')
+    .set('Authorization', validation)
     .send(edit)
     .expect(200)
     .expect(res => {
@@ -121,6 +151,7 @@ describe('Article PUT requests', function() {
       summary: 'What am I updating...?',
     };
     request.put('/api/v1/articles/105')
+    .set('Authorization', validation)
     .send(edit)
     .expect(400)
     .end(done);
@@ -146,12 +177,14 @@ describe('Article DELETE requests', function() {
 
   it('should delete the proper article', function(done) {
     request.delete('/api/v1/articles/15')
+    .set('Authorization', validation)
     .expect(200)
     .end(done);
   });
 
   it ('should handle a wrong ID', function(done) {
     request.delete('/api/v1/articles/105')
+    .set('Authorization', validation)
     .expect(400)
     .end(done);
   });
