@@ -4,17 +4,17 @@
   "description": "Coding Project for Medcircle",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/server.js",
-    "test": "BABEL_DISABLE_CACHE=1 export NODE_ENV=test && mocha test/articleRoute-Test.js"
+    "start": "node_modules/.bin/nodemon server/server.js",
+    "test": "BABEL_DISABLE_CACHE=1 export NODE_ENV=test && node_modules/.bin/mocha test/articleRoute-Test.js"
   },
   "author": "Jerry Mao",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.14.0",
     "body-parser": "^1.15.2",
+    "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "nodemon": "^1.11.0",
-    "passport": "^0.3.2",
     "pg": "^6.1.0",
     "qs": "^6.2.1",
     "sequelize": "^3.24.3"
