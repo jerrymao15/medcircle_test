@@ -1,6 +1,6 @@
 const axios = require('axios');
 const { sequelize, Article } = require('./dbController');
-require('dotenv').config();
+if (!process.env.EXAMPLE_JSON) require('dotenv').config();
 
 const medcicleExampleURI = process.env.EXAMPLE_JSON;
 
