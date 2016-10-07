@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node_modules/.bin/nodemon server/server.js",
-    "test": "BABEL_DISABLE_CACHE=1 export NODE_ENV=test && node_modules/.bin/mocha test/articleRoute-Test.js",
+    "test": "BABEL_DISABLE_CACHE=1 export NODE_ENV=test && eslint server && node_modules/.bin/mocha test/articleRoute-Test.js",
     "setup": "npm i && sh scripts/setup.sh",
     "create-table": "node scripts/setup.js",
     "drop-table": "node scripts/dropTable.js"
