@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
 const apiRoutes = require('./routes/apiRoutes');
 const { createDB } = require('./controllers/createController');
 const { validateToken } = require('./controllers/authController');
@@ -11,7 +10,6 @@ const PORT = 3000;
 // middleware used for all routes
 app.use(bodyParser.json());
 // app.use(validateToken);
-app.use(express.static(path.join(__dirname, './../')));
 
 /**
  * Express router is being used to handle potentially different versions of the API.
