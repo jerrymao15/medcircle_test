@@ -19,7 +19,13 @@ const createController = {
     .then(() => next())
     .catch(error => console.error(error));
   },
-
+  
+  dropDB(req, res, next) {
+    return sequelize.sync()
+    .then(Article.drop())
+    .then(() => next())
+    .catch(error => console.error(error));
+  },
 
 };
 

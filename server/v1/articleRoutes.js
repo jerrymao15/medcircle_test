@@ -1,10 +1,11 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const { getArticles, editArticle, deleteArticle } = require('../controllers/articleController');
+const apiDescription = require('./description');
 
 const articleRoutes = express.Router();
 
-articleRoutes.use(bodyParser.json());
+// used to give information on our API
+articleRoutes.get('/', (req, res) => res.set('Content-Type', 'application/json').send(JSON.stringify(apiDescription)));
 
 articleRoutes.route('/articles/')
 .get(getArticles);
