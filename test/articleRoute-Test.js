@@ -133,4 +133,26 @@ describe('Article DELETE requests', function() {
   before((done) => {
     sequelize.sync().then(() => done());
   });
+
+  beforeEach((done) => {
+    Article.create(articleFixture)
+    .then(() => done());
+  });
+
+  afterEach((done) => {
+    Article.destroy({ where: { id: 15 } })
+    .then(() => done());
+  });
+
+  it('should delete the proper article', function(done) {
+    request.delete('/v1/articles/15')
+    .expect(200)
+    .end(done);
+  });
+
+  it ('should handle a wrong ID', function(done) {
+    request.delete('/v1/articles/105')
+    .expect(400)
+    .end(done);
+  });
 });
