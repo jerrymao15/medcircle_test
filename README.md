@@ -10,4 +10,8 @@ Coding project for MedCircle
 3. Navigate to the repo and run `npm run setup`. This will create a database called "medcircle-project". In that database a table called "articles" will be created.
 4. In your root, create a file called `.env`. In this file type in `SECRET_TOKEN={token}`, where `{token}`is the OAuth "bearer" token that was provided. (ie it should look something like `SECRET_TOKEN=123abc` ).
 5. Run `npm start` to start the server.
-6. Navigate to localhost:3000/v1 for API instructions (your header will have to have the appropriate token). 
+6. Navigate to localhost:3000/v1 for API instructions (your header will have to have the appropriate token).
+
+#### Notes
+* To disable the authentication comment out line 13 in `server/server.js`.
+* `npm run drop-table` drops the article table.
