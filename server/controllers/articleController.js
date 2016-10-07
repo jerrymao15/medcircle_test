@@ -41,6 +41,8 @@ const articleController = {
   deleteArticle(req, res) {
     const id = req.params.id;
     return sequelize.sync()
+    .then(() => Article.destroy({ where: { id } }))
+    .then(num => num === 1 ? res.status(200).end() : res.status(400).end())
     .catch(err => res.status(400).end(err));
   },
 
