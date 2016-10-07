@@ -1,7 +1,9 @@
 const { expect } = require('chai');
 const server = require('../server/server');
 const request = require('supertest')(server);
+const qs = require('qs');
 const { sequelize, Article } = require('../server/controllers/dbController');
+const articleFixture = require('./fixtures/articleFixture');
 
 describe('Article GET requests', function() {
   before((done) => {
@@ -51,6 +53,34 @@ describe('Article PUT requests', function() {
   before((done) => {
     sequelize.sync().then(() => done());
   });
+
+  beforeEach((done) => {
+    Article.create(articleFixture)
+    .then(() => done());
+  });
+
+  afterEach((done) => {
+    Article.destroy({ where: { id: 15 } })
+    .then(() => done());
+  });
+
+  it('should edit the correct file', function() {
+
+  });
+
+  it('should only edit the changed queries', function() {
+
+  });
+
+  it('should disregard unrelated queries', function() {
+
+  })
+
+  it('should handle trying to edit a nonexsiting article', function() {
+
+  });
+
+
 });
 
 describe('Article DELETE requests', function() {
