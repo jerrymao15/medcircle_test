@@ -60,15 +60,29 @@ describe('Article GET requests', function() {
       expect(result[0].author.name).to.eql('Amy Kovacek');
     })
     .end(done);
-  })
+  });
 
   it ('should handle an ID not in the database', function(done) {
     request.get('/api/v1/articles/100')
     .set('Authorization', validation)
     .expect(400)
     .end(done);
-  })
+  });
 
+  it('should handle getting articles by query', function(done) {
+    const queryObj = {
+      author_name: 'Amy Kovacek',
+    };
+    request.get(`/api/v1/articles?${qs.stringify(queryObj)}`)
+    .set('Authorization', validation)
+    .expect(200)
+    .expect(res => {
+      const result = JSON.parse(res.text);
+      expect(result.length).to.eql(1);
+      expect(result[0].author.name).to.eql('Amy Kovacek');
+    })
+    .end(done);
+  });
 });
 
 
