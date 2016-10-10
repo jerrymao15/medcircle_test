@@ -30,8 +30,8 @@ describe('OAuth bearer token', function() {
 })
 
 describe('Article GET requests', function() {
-  before((done) => {
-    sequelize.sync().then(() => done());
+  before(done => {
+    sequelize.sync().then(() => done()).catch(err => console.error(err))
   });
   
   it('should get all articles if no ID is specified', function(done) {
@@ -87,8 +87,8 @@ describe('Article GET requests', function() {
 
 
 describe('Article PUT requests', function() {
-  before((done) => {
-    sequelize.sync().then(() => done());
+  before(done => {
+    sequelize.sync().then(() => done()).catch(err => console.error(err))
   });
 
   beforeEach((done) => {
@@ -175,8 +175,8 @@ describe('Article PUT requests', function() {
 });
 
 describe('Article DELETE requests', function() {
-  before((done) => {
-    sequelize.sync().then(() => done());
+  before(done => {
+    sequelize.sync().then(() => done()).catch(err => console.error(err))
   });
 
   beforeEach((done) => {
