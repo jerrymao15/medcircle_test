@@ -1,3 +1,3 @@
 brew services start postgres
-createdb medcircle-project
+createdb medcircle_project
 node scripts/setup.js
