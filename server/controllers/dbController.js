@@ -1,7 +1,11 @@
 const Sequelize = require('sequelize');
+require('dotenv').config();
 
-const sequelize = new Sequelize('medcircle-project', null, null, {
-  host: 'localhost',
+const { DATABASE_URI, DATABASE_USER, DATABASE_PASSWORD } = process.env;
+
+const sequelize = new Sequelize('medcircle_project', DATABASE_USER, DATABASE_PASSWORD, {
+  host: DATABASE_URI,
+  port: 5432,
   dialect: 'postgres',
 });
 
