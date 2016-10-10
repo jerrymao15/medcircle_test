@@ -7,6 +7,7 @@
       "no-prototype-builtins": 0,
       "no-confusing-arrow": 0,
       "global-require": 0,
+      "no-return-assign": 0,
       "new-cap": 1,
       "no-param-reassign": 1
     }
