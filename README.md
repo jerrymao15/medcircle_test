@@ -7,7 +7,7 @@ Coding project for MedCircle
 
 1. Clone the repo.
 2. Put the given `.env` file in the root of the project.
-3. Navigate to the root folder and run `npm test`. If tests pass, skip to 6. If not, in the `.env` file edit `DATABASE_URL` to be `localhost`, then continue to 3.
+3. Navigate to the root folder and run `npm i` then `npm test`. If tests pass, skip to 6. If not, in the `.env` file edit `DATABASE_URL` to be `localhost`, then continue to 3.
 4. If you do not have PostgreSQL installed, run `sh scripts/install.sh`. This will install it using Homebrew.
 5. Navigate to the repo and run `npm run setup`. This will create a database called "medcircle-project". In that database a table called "articles" will be created.
 6. Run `npm start` to start the server.
