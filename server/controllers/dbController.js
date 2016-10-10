@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
 
-const { DATABASE_URI, DATABASE_USER, DATABASE_PASSWORD } = process.env;
-
-const sequelize = new Sequelize('medcircle_project', DATABASE_USER, DATABASE_PASSWORD, {
-  host: DATABASE_URI,
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
   port: 5432,
   dialect: 'postgres',
+  dialectOptions: {
+    ssl: true, /* for SSL config since Heroku gives you this out of the box */
+  },
 });
 
 const Article = sequelize.define('articles', {
